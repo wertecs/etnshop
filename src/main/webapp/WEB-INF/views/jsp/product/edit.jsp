@@ -15,12 +15,15 @@
 <div class="container">
 	<h2>Add a new product</h2>
 
-	<form action="save" method="post" action="POST">
-		<label for="productName">Product name</label>
-		<input type="text" placeholder="Product Name" name="productName"/>
-		<label for="serialNo">Serial number:</label>
-		<input type="text" placeholder="Serial Number" name="serialNo"/>
-		<input type="submit"/>
+	<form action="/etnshop/product/save/${product.id}" method="post"
+		action="POST">
+		<label for="productId">Product id:</label> <input type="text"
+			name="productId" value="${product.id}" disabled /> <label
+			for="productName">Product name:</label> <input type="text"
+			placeholder="Product Name" name="productName" value="${product.name}" />
+		<label for="serialNo">Serial number:</label> <input type="text"
+			placeholder="Serial Number" name="serialNo"
+			value="${product.serialNumber}" /> <input type="submit" />
 	</form>
 	<hr>
 	<footer>

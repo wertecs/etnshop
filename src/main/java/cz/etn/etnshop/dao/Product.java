@@ -18,6 +18,8 @@ public class Product implements Serializable {
 	private int id;
  
     private String name;
+    
+    private String serialNumber;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +38,15 @@ public class Product implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Column(name = "serial_no", nullable = false)
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(String serialNumber) {
+		this.serialNumber = serialNumber;
 	}
     
     

@@ -19,4 +19,10 @@ public interface ProductService {
 
 	@Transactional(readOnly = false)
     void updateProduct(Product product);
+	
+	@Transactional(readOnly = false)
+	Product getProductById(Integer id);
+
+	@Transactional(readOnly = false)
+	List<Product> search(String query);
 }
