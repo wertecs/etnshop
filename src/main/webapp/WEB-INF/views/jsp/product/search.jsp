@@ -10,6 +10,10 @@
 	var="bootstrapCss" />
 <link href="${bootstrapCss}" rel="stylesheet" />
 <link href="${coreCss}" rel="stylesheet" />
+
+<script type="text/javascript"
+	src="/etnshop/resources/core/js/jquery-1.10.1.min.js"></script>
+<script type="text/javascript" src="/etnshop/resources/core/js/hello.js"></script>
 </head>
 
 <div class="container">
@@ -22,37 +26,30 @@
 
 	<form action="search" method="post" action="POST">
 		<label for="query">Query</label> <input type="text"
-			placeholder="Search Query" name="query" /> <input type="submit"
-			class="btn btn-primary btn" value="Search" />
+			placeholder="Search Query" name="query" id="searchbox" /> <input
+			type="submit" class="btn btn-primary btn" value="Search" />
 
 	</form>
-	<c:choose>
-		<c:when test="${products == null || products.size() == 0}">
-       No products match the given criteria
-    </c:when>
-		<c:otherwise>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Serial Number</th>
-						<th>Edit</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${products}" var="product">
-						<tr>
-							<td>${product.id}</td>
-							<td>${product.name}</td>
-							<td>${product.serialNumber}</td>
-							<td><a href="/etnshop/product/edit/${product.id}">${product.id}</a></td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</c:otherwise>
-	</c:choose>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Serial Number</th>
+				<th>Edit</th>
+			</tr>
+		</thead>
+		<tbody id="results">
+			<c:forEach items="${products}" var="product">
+				<tr>
+					<td>${product.id}</td>
+					<td>${product.name}</td>
+					<td>${product.serialNumber}</td>
+					<td><a href="/etnshop/product/edit/${product.id}">${product.id}</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
 
 	<hr>
@@ -65,7 +62,6 @@
 	var="bootstrapJs" />
 
 <script src="${bootstrapJs}"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 </body>
 </html>

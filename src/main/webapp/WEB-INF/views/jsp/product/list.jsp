@@ -17,6 +17,7 @@
 	
 	<c:if test="${param.message != null}">${param.message}</c:if>
 	<a class="btn btn-primary btn-lg" href="/etnshop/product/search" role="button">Search</a>
+	<a class="btn btn-primary btn-lg" href="/etnshop/product/add" role="button">New Product</a>
 	
 	<table class="table">
 		<thead>
@@ -33,7 +34,7 @@
 					<td>${product.id}</td>
 					<td>${product.name}</td>
 					<td>${product.serialNumber}</td>
-					<td><a href="/etnshop/product/edit/${product.id}">${product.id}</a></td>
+					<td><a href="/etnshop/product/edit/${product.id}">Edit</a></td>
 				</tr>	
 			</c:forEach>
 		</tbody>

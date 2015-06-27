@@ -1,5 +1,7 @@
 package cz.etn.etnshop.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +63,7 @@ public class ProductController {
 		Product p = new Product();
 		p.setName(productName);
 		p.setSerialNumber(serialNo);
+		
 		productService.saveProduct(p);
 		String message = "Product was saved successfuly";
 
@@ -87,14 +90,35 @@ public class ProductController {
 		modelAndView.addObject("message", message);
 		return modelAndView;
 	}
-	
-	
-	
+
 	@RequestMapping("/search")
-	public ModelAndView search(@RequestParam(required=false) String query) {
+	public ModelAndView search(@RequestParam(required = false) String query) {
 		ModelAndView modelAndView = new ModelAndView("product/search");
-		if(query != null)
-			modelAndView.addObject("products", productService.search(query));	
+		if (query != null)
+			modelAndView.addObject("products", productService.search(query));
 		return modelAndView;
+	}
+
+	@RequestMapping(value = "/searchajax/{query}", method = RequestMethod.GET)
+	public @ResponseBody String searchAjax(@PathVariable String query) {
+		String result = "";
+		if (query != null) {
+			List<Product> search = productService.search(query);
+			if (search.isEmpty())
+				result = "No item matches the give query";
+			result = createProductsHtml(productService.search(query));
+		}
+
+		return result;
+	}
+
+	private String createProductsHtml(List<Product> search) {
+		String res = "";
+		for (Product p : search) {
+			res += "<tr><td>" + p.getId() + "</td><td>" + p.getName()
+					+ "</td><td>" + p.getSerialNumber() + "</td></tr>";
+		}
+		logger.debug(res);
+		return res;
 	}
 }
